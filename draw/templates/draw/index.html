@@ -4,27 +4,283 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Drawing</title>
+    <title>P4 Trailblazers</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
 
     <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap');
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    #bigmap {
+        width: 100vw;
+        height: 80.49vw;
+        background-image: url(https://i.imgur.com/z3q6Bpj.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .destButton {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid white;
+        position: absolute;
+        background-size: cover;
+        cursor: pointer;
+        z-index: 1;
+    }
+    .destBox {
+        position: fixed;
+        top: 22.5vw;
+        left: 12.5vw;
+        background-color: white;
+        border-radius: 1.5vw;
+        display: none;
+        width: 75vw;
+        padding: 4.5vw;
+        height: 30vw;
+        z-index: 2;
+    }
+    .destBox > img {
+        display: block;
+        width: 21vw;
+        margin-right: 3vw;
+        height: fit-content;
+        float: left;
+    }
+    .destBox > div {
+        float: left;
+        width: 40.5vw;
+    }
+    .destBox h3 {
+        font-size: 3vw;
+        font-weight: 600;
+    }
+    .destBox p {
+        font-size: 2.25vw;
+        font-weight: 300;
+        margin: 0;
+    }
+    .exit {
+        display: none;
+        font-size: 4.5vw;
+        position: fixed;
+        right: 16vw;
+        top: 25vw;
+        cursor: pointer;
+        z-index: 3;
+    }
+    .destBox h5 {
+        margin: 0;
+        margin-top: 3vw;
+        float: left;
+        text-align: center;
+        vertical-align: center;
+        width: 31.5vw;
+        height: 6.25vw;
+        font-size: 2.25vw;
+        line-height: 2.25vw;
+        padding-top: 2vw;
+        border-radius: 1vw;
+        border: 1px black solid;
+        cursor: pointer;
+    }
+    .destBox .dbunselect {
+        clear: both;
+        margin-right: 3vw;
+        background-color: white;
+        color: black;
+    }
+    .destBox .dbselect {
+        background-color: black;
+        color: white;
+    }
+    h4 {
+        background-color: black;
+        text-align: center;
+        color: white;
+        font-size: 3vw;
+        line-height: 3vw;
+        padding-top: 3vw;
+        padding-bottom: 2vw;
+        margin: 0;
+        font-weight: 600;
+    }
     </style>
 
 </head>
 <body>
-    <!-- You may change the dimensions of this canvas -->
-    <canvas id="myCanvas" width="700px" height="700px"></canvas>
+    <!-- Option 1 -->
+    <div id="bigmap">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/UDgvCXl.png); left: calc(66.56vw - 41px); top: calc(58.69vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/UDgvCXl.png">
+            <div><h3>Lavender Field</h3>
+                <p>Fragrant field of blue French lavender. Colonists originally brought in lavender to produce lavender syrup for lattes. Today, the lavender is hand-harvested to be dried.</p></div></div></div>
+        <div class="destButton" style="background-image: url(https://i.imgur.com/rN1DT5M.png); left: calc(54.59vw - 41px); top: calc(18.69vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/rN1DT5M.png">
+            <div><h3>Arrow Mountain</h3>
+                <p>In a previous millenium, a glacier carved one face of the mountain, rendering it smooth. Arrow Mountain stands as the highest elevation point on the island.</p></div></div></div>
+        <div class="destButton" style="background-image: url(https://i.imgur.com/chcjBny.png); left: calc(80.98vw - 41px); top: calc(27.05vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/chcjBny.png">
+            <div><h3>Turquoise Lake</h3>
+                <p>The iconic turquoise color of this lake is thanks to mineral deposits from melted glacier water. Glaciers pick up debris as they travel, which deposits into water sources.</p></div></div></div>
+        <div class="destButton" style="background-image: url(https://i.imgur.com/OyfrR8G.png); left: calc(53.11vw - 41px); top: calc(34.26vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/OyfrR8G.png">
+            <div><h3>Canyon Falls</h3>
+                <p>People love to bathe in mist coming from this waterfall while overseeing it from the bridge. Adventurous hikers dip in the pool at the bottom of the falls for a swim.</p></div></div></div>
+        <div class="destButton" style="background-image: url(https://i.imgur.com/LZmnoSe.png); left: calc(26.07vw - 41px); top: calc(31.48vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/LZmnoSe.png">
+            <div><h3>Mammoth Glacier</h3>
+                <p>Though melting faster in recent years, Mammoth Glacier remains standing strong as one of the more well-preserved glaciers. Feel free to drink from its melted streams.</p></div></div></div>
+        <div class="destButton" style="background-image: url(https://i.imgur.com/skhGSsy.png); left: calc(45.41vw - 41px); top: calc(62.30vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/skhGSsy.png">
+            <div><h3>Sunset Beach</h3>
+                <p>A popular destination for those looking to relax. Lounge on warm sands, or wade in nearby tide pools. Surfing, parasailing, and boating are some amusements available.</p></div></div></div>
+        <div class="destButton" style="background-image: url(https://i.imgur.com/QZjHKRO.png); left: calc(60.33vw - 41px); top: calc(46.39vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/QZjHKRO.png">
+            <div><h3>Giant Redwood</h3>
+                <p>Redwoods like this one thrive in temperate climates. In drier spells, they absorb water from coastal fog. Redwood forests are diminishming through global warming.</p></div></div></div>
+        <div class="destButton" style="background-image: url(https://i.imgur.com/MLPadhE.png); left: calc(31.15vw - 41px); top: calc(49.84vw - 41px);"><div class="destBox">
+            <img src="https://i.imgur.com/MLPadhE.png">
+            <div><h3>Chalk Cliffs</h3>
+                <p>Calcium deposits from crustaceans leave chalky trails on these cliff surfaces. Voyagers can tour the lighthouse nearby. Quite windy here; bring a jacket.</p></div></div></div>
+        <h3 class="exit">&times;</h3>
+    </div>
+    <div id="smallchoose">
+        <h4>Select Attractions</h4>
+        <div id="destChoose">
+            <div class="destOption">Lavender Field</div>
+            <div class="destOption">Arrow Mountain</div>
+            <div class="destOption">Turquoise Lake</div>
+            <div class="destOption">Canyon Falls</div>
+            <div class="destOption">Mammoth Glacier</div>
+            <div class="destOption">Sunset Beach</div>
+            <div class="destOption">Giant Redwood</div>
+            <div class="destOption">Chalk Cliffs</div>
+        </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div id="bignothing" style="background-color: black; background-image: url(https://i.imgur.com/EdcIS75.png); background-size: cover; width: 100vw; height: 80.49vw; color: white; text-align: center;">
+        <h1 style="font-size: 5vw; font-weight: 600; padding-top: 30vw;">Welcome, Group 2414!</h1>
+        <h2 style="font-size: 2vw; font-weight: 600; margin-top: 1vw;">Please individually submit your hiking preferences on your phones.</h2>
+        <h2 style="font-size: 2vw; font-weight: 300; margin: 1vw auto; width: 60vw;">Once all connected users are finished, a trail that takes all your preferences into account will be displayed here!</h2>
+    </div>
+    <div id="smallmap">
+        <h4>Select Attractions</h4>
+        <div id="actualsmallmap" style="width: 100vw; height: 80.49vw; background-image: url(https://i.imgur.com/z3q6Bpj.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/UDgvCXl.png); left: calc(66.56vw - 41px); top: calc(66.69vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/UDgvCXl.png">
+                <div><h3>Lavender Field</h3>
+                    <p>Fragrant field of blue French lavender. Colonists originally brought in lavender to produce lavender syrup for lattes. Today, the lavender is hand-harvested to be dried.</p></div>
+                    <h5 class="dbunselect" id="u1">Unselect</h5>
+                    <h5 class="dbselect" id="s1">Select</h5>
+                </div>
+            </div>
+            <div class="destButton" style="background-image: url(https://i.imgur.com/rN1DT5M.png); left: calc(54.59vw - 41px); top: calc(26.69vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/rN1DT5M.png">
+                <div><h3>Arrow Mountain</h3>
+                    <p>In a previous millenium, a glacier carved one face of the mountain, rendering it smooth. Arrow Mountain stands as the highest elevation point on the island.</p></div>
+                    <h5 class="dbunselect" id="u2">Unselect</h5>
+                    <h5 class="dbselect" id="s2">Select</h5>
+                </div>
+            </div>
+            <div class="destButton" style="background-image: url(https://i.imgur.com/chcjBny.png); left: calc(80.98vw - 41px); top: calc(35.05vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/chcjBny.png">
+                <div><h3>Turquoise Lake</h3>
+                    <p>The iconic turquoise color of this lake is thanks to mineral deposits from melted glacier water. Glaciers pick up debris as they travel, which deposits into water sources.</p></div>
+                    <h5 class="dbunselect" id="u3">Unselect</h5>
+                    <h5 class="dbselect" id="s3">Select</h5>
+                </div>
+            </div>
+            <div class="destButton" style="background-image: url(https://i.imgur.com/OyfrR8G.png); left: calc(53.11vw - 41px); top: calc(42.26vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/OyfrR8G.png">
+                <div><h3>Canyon Falls</h3>
+                    <p>People love to bathe in mist coming from this waterfall while overseeing it from the bridge. Adventurous hikers dip in the pool at the bottom of the falls for a swim.</p></div>
+                    <h5 class="dbunselect" id="u4">Unselect</h5>
+                    <h5 class="dbselect" id="s4">Select</h5>
+                </div>
+            </div>
+            <div class="destButton" style="background-image: url(https://i.imgur.com/LZmnoSe.png); left: calc(26.07vw - 41px); top: calc(39.48vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/LZmnoSe.png">
+                <div><h3>Mammoth Glacier</h3>
+                    <p>Though melting faster in recent years, Mammoth Glacier remains standing strong as one of the more well-preserved glaciers. Feel free to drink from its melted streams.</p></div>
+                    <h5 class="dbunselect" id="u5">Unselect</h5>
+                    <h5 class="dbselect" id="s5">Select</h5>
+                </div>
+            </div>
+            <div class="destButton" style="background-image: url(https://i.imgur.com/skhGSsy.png); left: calc(45.41vw - 41px); top: calc(70.30vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/skhGSsy.png">
+                <div><h3>Sunset Beach</h3>
+                    <p>A popular destination for those looking to relax. Lounge on warm sands, or wade in nearby tide pools. Surfing, parasailing, and boating are some amusements available.</p></div>
+                    <h5 class="dbunselect" id="u6">Unselect</h5>
+                    <h5 class="dbselect" id="s6">Select</h5>
+                </div>
+            </div>
+            <div class="destButton" style="background-image: url(https://i.imgur.com/QZjHKRO.png); left: calc(60.33vw - 41px); top: calc(54.39vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/QZjHKRO.png">
+                <div><h3>Giant Redwood</h3>
+                    <p>Redwoods like this one thrive in temperate climates. In drier spells, they absorb water from coastal fog. Redwood forests are diminishming through global warming.</p></div>
+                    <h5 class="dbunselect" id="u7">Unselect</h5>
+                    <h5 class="dbselect" id="s7">Select</h5>
+                </div>
+            </div>
+            <div class="destButton" style="background-image: url(https://i.imgur.com/MLPadhE.png); left: calc(31.15vw - 41px); top: calc(57.84vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+                <img src="https://i.imgur.com/MLPadhE.png">
+                <div><h3>Chalk Cliffs</h3>
+                    <p>Calcium deposits from crustaceans leave chalky trails on these cliff surfaces. Voyagers can tour the lighthouse nearby. Quite windy here; bring a jacket.</p></div>
+                    <h5 class="dbunselect" id="u8">Unselect</h5>
+                    <h5 class="dbselect" id="s8">Select</h5>
+                </div>
+            </div>
+            <h3 class="exit">&times;</h3>
+        </div>
+    </div>
+
+    <!-- Both -->
+    <div id="smallother">
+        <div id="difficulty">
+            <h4>Select Difficulty</h4>
+            <ul>
+                <li> Very Easy </li>
+                <li><input type="radio" name="ease" value="1" /></li>
+                <li><input type="radio" name="ease" value="2" /></li>
+                <li><input type="radio" name="ease" value="3" /></li>
+                <li><input type="radio" name="ease" value="4" /></li>
+                <li><input type="radio" name="ease" value="5" /></li>
+                <li> Very Difficult </li>
+            </ul>
+        </div>
+        <div id="range">
+            <h4>Select Range</h4>
+            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="slider-range"></div>
+        </div>
+        <div id="submit">
+            Submit
+        </div>
+    </div>
+    <div id="bigtrail">
+        <h1>Your Generated Trail</h1>
+        <h2>Enjoy your hike!</h2>
+    </div>
 </body>
 <script>
 
     // setting up the canvas and one paper tool
-    var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
-    var tool = new paper.Tool();
-    var path = new paper.Path();
+    // var canvas = document.getElementById('myCanvas');
+    // paper.setup(canvas);
+    // var tool = new paper.Tool();
+    // var path = new paper.Path();
     var uid = Date.now() % 10000;
     var red = Math.round(Math.random() * 255);
     var green = Math.round(Math.random() * 255);
@@ -32,38 +288,90 @@
 
     // getting the URL (you may want to use for Exercise 3)
     var url = window.location.href;
-    var size = url.split("=")[1];
+    var option = url.split("=")[1].split("&")[0];
+    var size = url.split("=")[2];
 
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
 
-    tool.onMouseDown = function(event) {
-        if (size == "small") {
-            path = new paper.Path();
-            socket.send("{\"x\" : " + event.point.x 
-            + ", \"y\" : " + event.point.y 
-            + ", \"uid\" : " + uid 
-            + ", \"red\" : " + red 
-            + ", \"green\" : " + green 
-            + ", \"blue\" : " + blue 
-            + ", \"new\" : " + 1 + "}");
+    window.onload = (e) => {
+        console.log("hello");
+        document.getElementById("bigtrail").style.display = "none";
+        if (option == "1") {
+            if (size == "big") {
+                document.getElementById("bigmap").style.display = "block";
+                document.getElementById("smallchoose").style.display = "none";
+                document.getElementById("bignothing").style.display = "none";
+                document.getElementById("smallmap").style.display = "none";
+                document.getElementById("smallother").style.display = "none";
+            } else if (size == "small") {
+                document.getElementById("bigmap").style.display = "none";
+                document.getElementById("smallchoose").style.display = "block";
+                document.getElementById("bignothing").style.display = "none";
+                document.getElementById("smallmap").style.display = "none";
+                document.getElementById("smallother").style.display = "block";
+            } else {
+                console.log("Follow instructions!");
+            }
+        } else if (option == "2") {
+            if (size == "big") {
+                document.getElementById("bigmap").style.display = "none";
+                document.getElementById("smallchoose").style.display = "none";
+                document.getElementById("bignothing").style.display = "block";
+                document.getElementById("smallmap").style.display = "none";
+                document.getElementById("smallother").style.display = "none";
+            } else if (size == "small") {
+                document.getElementById("bigmap").style.display = "none";
+                document.getElementById("smallchoose").style.display = "none";
+                document.getElementById("bignothing").style.display = "none";
+                document.getElementById("smallmap").style.display = "block";
+                document.getElementById("smallother").style.display = "block";
+            } else {
+                console.log("Follow instructions!");
+            }
+        } else {
+            console.log("Follow instructions!");
         }
-    }
-    
-    tool.onMouseDrag = function(event) { //http://paperjs.org/reference/tool/ path examples
-        if (size == "small") {
-            path.strokeColor = "rgb(" + red + ", " + green + ", " + blue + ")";
-            path.add(event.point);
-            // You may need to add code here if you want to pass any other information.
-            socket.send("{\"x\" : " + event.point.x 
-            + ", \"y\" : " + event.point.y 
-            + ", \"uid\" : " + uid 
-            + ", \"red\" : " + red 
-            + ", \"green\" : " + green 
-            + ", \"blue\" : " + blue 
-            + ", \"new\" : " + 0 + "}");
+    };
+
+    var readinginfo = 0;
+    $('.destButton').click(function(){
+        if (readinginfo == 0) {
+            $('.destButton').css({'cursor' : 'default', 'background-size' : 0, 'border' : 'none'});
+            $(this).find('.destBox').css({'display' : 'block'});
+            $('.exit').css({'display' : 'block'});
+            readinginfo = 1;
         }
-    }
+    });
+    $('.exit').click(function(){
+        $('.destButton').css({'cursor' : 'pointer', 'background-size' : 'cover', 'border' : '2px white solid'});
+        $('.destBox').css({'display' : 'none'});
+        readinginfo = 0;
+        $(this).css({'display' : 'none'});
+    });
+    $
+
+    // $( function() {
+    //     $( "#slider-range" ).slider({
+    //     range: true,
+    //     min: 0,
+    //     max: 500,
+    //     values: [ 75, 300 ],
+    //     slide: function( event, ui ) {
+    //         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    //     }
+    //     });
+    //     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+    //     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    // } );
+
+            // socket.send("{\"x\" : " + event.point.x 
+            // + ", \"y\" : " + event.point.y 
+            // + ", \"uid\" : " + uid 
+            // + ", \"red\" : " + red 
+            // + ", \"green\" : " + green 
+            // + ", \"blue\" : " + blue 
+            // + ", \"new\" : " + 1 + "}");
 
     socket.onmessage = function(receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
