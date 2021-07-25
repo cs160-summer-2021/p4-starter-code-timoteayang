@@ -8,6 +8,10 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+    <!-- Imported range bar -->
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
 
     <style type="text/css">
@@ -16,6 +20,7 @@
         margin: 0;
         padding: 0;
         font-family: 'Open Sans', sans-serif;
+        background-color: black;
     }
     ::-webkit-scrollbar {
         display: none;
@@ -29,10 +34,10 @@
         background-size: cover;
     }
     .destButton {
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
-        border: 2px solid white;
+        border: 2px solid black;
         position: absolute;
         background-size: cover;
         cursor: pointer;
@@ -53,8 +58,8 @@
     .destBox > img {
         display: block;
         width: 21vw;
+        height: 21vw;
         margin-right: 3vw;
-        height: fit-content;
         float: left;
     }
     .destBox > div {
@@ -92,7 +97,6 @@
         padding-top: 2vw;
         border-radius: 1vw;
         border: 1px black solid;
-        cursor: pointer;
     }
     .destBox .dbunselect {
         clear: both;
@@ -103,17 +107,93 @@
     .destBox .dbselect {
         background-color: black;
         color: white;
+        cursor: pointer;
     }
     h4 {
         background-color: black;
         text-align: center;
         color: white;
-        font-size: 3vw;
-        line-height: 3vw;
-        padding-top: 3vw;
-        padding-bottom: 2vw;
+        font-size: 5vw;
+        line-height: 5vw;
+        padding-top: 6vw;
+        padding-bottom: 3vw;
         margin: 0;
         font-weight: 600;
+        clear: both;
+    }
+    ul {
+        list-style-type: none;
+        font-size: 3vw;
+        line-height: 3vw;
+        font-weight: 300;
+        color: white;
+        background-color: black;
+        height: 6vw;
+        margin: 0;
+        width: 100vw;
+        padding: 0;
+        padding-left: 22.5vw;
+    }
+    li {
+        float: left;
+        margin: 1vw;
+    }
+    input[type='radio'] { 
+        border: transparent;
+        height: 3vw;
+        width: 3vw;
+    }
+    #submit {
+        width: 25vw;
+        font-size: 3vw;
+        padding: 3vw;
+        border-radius: 1.5vw;
+        text-align: center;
+        background-color: #65B58F;
+        color: white;
+        font-weight: 600;
+        margin: 12vw auto;
+        cursor: pointer;
+    }
+    #smalldone {
+        width: 100vw; 
+        height: 100vh;
+        position: fixed;
+        background-color: #65B58F;
+        color: white;
+        padding-top: 82.5vw;
+        text-align: center;
+        z-index: 5;
+    }
+    #smalldone > h1 {
+        font-size: 10vw;
+        margin-bottom: 2.5vw;
+    }
+    #smalldone > h2 {
+        font-size: 5vw;
+        font-weight: 300;
+        width: 75vw;
+        margin-left: 12.5vw;
+    }
+    #destChoose {
+        padding-left: 5.5Vw;
+    }
+    .destOption {
+        background-color: rgba(255, 255, 255, 0.3);
+        width: 40vw;
+        margin-left: 3vw;
+        margin-bottom: 3vw;
+        padding: 3vw;
+        text-align: center;
+        float: left;
+        font-size: 3vw;
+        font-weight: 300;
+        color: white;
+        border-radius: 1.5vw;
+        cursor: pointer;
+    }
+    #actualsmallmap .destBox {
+        top: 32.5vw;
     }
     </style>
 
@@ -121,51 +201,54 @@
 <body>
     <!-- Option 1 -->
     <div id="bigmap">
-        <div class="destButton" style="background-image: url(https://i.imgur.com/UDgvCXl.png); left: calc(66.56vw - 41px); top: calc(58.69vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/UDgvCXl.png); left: calc(66.56vw - 25px); top: calc(58.69vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/UDgvCXl.png">
             <div><h3>Lavender Field</h3>
                 <p>Fragrant field of blue French lavender. Colonists originally brought in lavender to produce lavender syrup for lattes. Today, the lavender is hand-harvested to be dried.</p></div></div></div>
-        <div class="destButton" style="background-image: url(https://i.imgur.com/rN1DT5M.png); left: calc(54.59vw - 41px); top: calc(18.69vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/rN1DT5M.png); left: calc(54.59vw - 25px); top: calc(18.69vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/rN1DT5M.png">
             <div><h3>Arrow Mountain</h3>
                 <p>In a previous millenium, a glacier carved one face of the mountain, rendering it smooth. Arrow Mountain stands as the highest elevation point on the island.</p></div></div></div>
-        <div class="destButton" style="background-image: url(https://i.imgur.com/chcjBny.png); left: calc(80.98vw - 41px); top: calc(27.05vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/chcjBny.png); left: calc(80.98vw - 25px); top: calc(27.05vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/chcjBny.png">
             <div><h3>Turquoise Lake</h3>
                 <p>The iconic turquoise color of this lake is thanks to mineral deposits from melted glacier water. Glaciers pick up debris as they travel, which deposits into water sources.</p></div></div></div>
-        <div class="destButton" style="background-image: url(https://i.imgur.com/OyfrR8G.png); left: calc(53.11vw - 41px); top: calc(34.26vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/OyfrR8G.png); left: calc(53.11vw - 25px); top: calc(34.26vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/OyfrR8G.png">
             <div><h3>Canyon Falls</h3>
                 <p>People love to bathe in mist coming from this waterfall while overseeing it from the bridge. Adventurous hikers dip in the pool at the bottom of the falls for a swim.</p></div></div></div>
-        <div class="destButton" style="background-image: url(https://i.imgur.com/LZmnoSe.png); left: calc(26.07vw - 41px); top: calc(31.48vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/LZmnoSe.png); left: calc(26.07vw - 25px); top: calc(31.48vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/LZmnoSe.png">
             <div><h3>Mammoth Glacier</h3>
                 <p>Though melting faster in recent years, Mammoth Glacier remains standing strong as one of the more well-preserved glaciers. Feel free to drink from its melted streams.</p></div></div></div>
-        <div class="destButton" style="background-image: url(https://i.imgur.com/skhGSsy.png); left: calc(45.41vw - 41px); top: calc(62.30vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/skhGSsy.png); left: calc(45.41vw - 25px); top: calc(62.30vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/skhGSsy.png">
             <div><h3>Sunset Beach</h3>
                 <p>A popular destination for those looking to relax. Lounge on warm sands, or wade in nearby tide pools. Surfing, parasailing, and boating are some amusements available.</p></div></div></div>
-        <div class="destButton" style="background-image: url(https://i.imgur.com/QZjHKRO.png); left: calc(60.33vw - 41px); top: calc(46.39vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/QZjHKRO.png); left: calc(60.33vw - 25px); top: calc(46.39vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/QZjHKRO.png">
             <div><h3>Giant Redwood</h3>
                 <p>Redwoods like this one thrive in temperate climates. In drier spells, they absorb water from coastal fog. Redwood forests are diminishming through global warming.</p></div></div></div>
-        <div class="destButton" style="background-image: url(https://i.imgur.com/MLPadhE.png); left: calc(31.15vw - 41px); top: calc(49.84vw - 41px);"><div class="destBox">
+        <div class="destButton" style="background-image: url(https://i.imgur.com/MLPadhE.png); left: calc(31.15vw - 25px); top: calc(49.84vw - 25px); border-color: white;"><div class="destBox">
             <img src="https://i.imgur.com/MLPadhE.png">
             <div><h3>Chalk Cliffs</h3>
                 <p>Calcium deposits from crustaceans leave chalky trails on these cliff surfaces. Voyagers can tour the lighthouse nearby. Quite windy here; bring a jacket.</p></div></div></div>
         <h3 class="exit">&times;</h3>
     </div>
     <div id="smallchoose">
-        <h4>Select Attractions</h4>
+        <h1 style="font-size: 10vw; font-weight: 600; padding-top: 15vw; color: white; text-align: center;">Welcome!</h1>
+        <h1 style="font-size: 5vw; font-weight: 600; color: white; text-align: center; line-height: 0vw; ">You are in Group 2414.</h1>
+        <h2 style="font-size: 3vw; font-weight: 300; color: white; text-align: center; padding: 1.5vw 20vw;">Submit your own preferences below.</h2>
+        <h4 style="margin-bottom: 1vw">Select Attractions</h4>
         <div id="destChoose">
-            <div class="destOption">Lavender Field</div>
-            <div class="destOption">Arrow Mountain</div>
-            <div class="destOption">Turquoise Lake</div>
-            <div class="destOption">Canyon Falls</div>
-            <div class="destOption">Mammoth Glacier</div>
-            <div class="destOption">Sunset Beach</div>
-            <div class="destOption">Giant Redwood</div>
-            <div class="destOption">Chalk Cliffs</div>
+            <div class="destOption" id="o1">Lavender Field</div>
+            <div class="destOption" id="o2">Arrow Mountain</div>
+            <div class="destOption" id="o3">Turquoise Lake</div>
+            <div class="destOption" id="o4">Canyon Falls</div>
+            <div class="destOption" id="o5">Mammoth Glacier</div>
+            <div class="destOption" id="o6">Sunset Beach</div>
+            <div class="destOption" id="o7">Giant Redwood</div>
+            <div class="destOption" id="o8">Chalk Cliffs</div>
         </div>
     </div>
 
@@ -173,12 +256,12 @@
     <div id="bignothing" style="background-color: black; background-image: url(https://i.imgur.com/EdcIS75.png); background-size: cover; width: 100vw; height: 80.49vw; color: white; text-align: center;">
         <h1 style="font-size: 5vw; font-weight: 600; padding-top: 30vw;">Welcome, Group 2414!</h1>
         <h2 style="font-size: 2vw; font-weight: 600; margin-top: 1vw;">Please individually submit your hiking preferences on your phones.</h2>
-        <h2 style="font-size: 2vw; font-weight: 300; margin: 1vw auto; width: 60vw;">Once all connected users are finished, a trail that takes all your preferences into account will be displayed here!</h2>
+        <h2 style="font-size: 2vw; font-weight: 300; margin: 1vw auto; width: 60vw;">Once all group members are finished, a trail that takes all of your preferences into account will be displayed here!</h2>
     </div>
     <div id="smallmap">
-        <h4>Select Attractions</h4>
+        <h4 style="padding-top: 10vw;">Select Attractions</h4>
         <div id="actualsmallmap" style="width: 100vw; height: 80.49vw; background-image: url(https://i.imgur.com/z3q6Bpj.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
-            <div class="destButton" style="background-image: url(https://i.imgur.com/UDgvCXl.png); left: calc(66.56vw - 41px); top: calc(66.69vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/UDgvCXl.png); left: calc(66.56vw - 25px); top: calc(76.69vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/UDgvCXl.png">
                 <div><h3>Lavender Field</h3>
                     <p>Fragrant field of blue French lavender. Colonists originally brought in lavender to produce lavender syrup for lattes. Today, the lavender is hand-harvested to be dried.</p></div>
@@ -186,7 +269,7 @@
                     <h5 class="dbselect" id="s1">Select</h5>
                 </div>
             </div>
-            <div class="destButton" style="background-image: url(https://i.imgur.com/rN1DT5M.png); left: calc(54.59vw - 41px); top: calc(26.69vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/rN1DT5M.png); left: calc(54.59vw - 25px); top: calc(36.69vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/rN1DT5M.png">
                 <div><h3>Arrow Mountain</h3>
                     <p>In a previous millenium, a glacier carved one face of the mountain, rendering it smooth. Arrow Mountain stands as the highest elevation point on the island.</p></div>
@@ -194,7 +277,7 @@
                     <h5 class="dbselect" id="s2">Select</h5>
                 </div>
             </div>
-            <div class="destButton" style="background-image: url(https://i.imgur.com/chcjBny.png); left: calc(80.98vw - 41px); top: calc(35.05vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/chcjBny.png); left: calc(80.98vw - 25px); top: calc(45.05vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/chcjBny.png">
                 <div><h3>Turquoise Lake</h3>
                     <p>The iconic turquoise color of this lake is thanks to mineral deposits from melted glacier water. Glaciers pick up debris as they travel, which deposits into water sources.</p></div>
@@ -202,7 +285,7 @@
                     <h5 class="dbselect" id="s3">Select</h5>
                 </div>
             </div>
-            <div class="destButton" style="background-image: url(https://i.imgur.com/OyfrR8G.png); left: calc(53.11vw - 41px); top: calc(42.26vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/OyfrR8G.png); left: calc(53.11vw - 25px); top: calc(52.26vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/OyfrR8G.png">
                 <div><h3>Canyon Falls</h3>
                     <p>People love to bathe in mist coming from this waterfall while overseeing it from the bridge. Adventurous hikers dip in the pool at the bottom of the falls for a swim.</p></div>
@@ -210,7 +293,7 @@
                     <h5 class="dbselect" id="s4">Select</h5>
                 </div>
             </div>
-            <div class="destButton" style="background-image: url(https://i.imgur.com/LZmnoSe.png); left: calc(26.07vw - 41px); top: calc(39.48vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/LZmnoSe.png); left: calc(26.07vw - 25px); top: calc(49.48vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/LZmnoSe.png">
                 <div><h3>Mammoth Glacier</h3>
                     <p>Though melting faster in recent years, Mammoth Glacier remains standing strong as one of the more well-preserved glaciers. Feel free to drink from its melted streams.</p></div>
@@ -218,7 +301,7 @@
                     <h5 class="dbselect" id="s5">Select</h5>
                 </div>
             </div>
-            <div class="destButton" style="background-image: url(https://i.imgur.com/skhGSsy.png); left: calc(45.41vw - 41px); top: calc(70.30vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/skhGSsy.png); left: calc(45.41vw - 25px); top: calc(80.30vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/skhGSsy.png">
                 <div><h3>Sunset Beach</h3>
                     <p>A popular destination for those looking to relax. Lounge on warm sands, or wade in nearby tide pools. Surfing, parasailing, and boating are some amusements available.</p></div>
@@ -226,7 +309,7 @@
                     <h5 class="dbselect" id="s6">Select</h5>
                 </div>
             </div>
-            <div class="destButton" style="background-image: url(https://i.imgur.com/QZjHKRO.png); left: calc(60.33vw - 41px); top: calc(54.39vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/QZjHKRO.png); left: calc(60.33vw - 25px); top: calc(64.39vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/QZjHKRO.png">
                 <div><h3>Giant Redwood</h3>
                     <p>Redwoods like this one thrive in temperate climates. In drier spells, they absorb water from coastal fog. Redwood forests are diminishming through global warming.</p></div>
@@ -234,7 +317,7 @@
                     <h5 class="dbselect" id="s7">Select</h5>
                 </div>
             </div>
-            <div class="destButton" style="background-image: url(https://i.imgur.com/MLPadhE.png); left: calc(31.15vw - 41px); top: calc(57.84vw - 41px);"><div class="destBox" style="height: 39.5vw;">
+            <div class="destButton" style="background-image: url(https://i.imgur.com/MLPadhE.png); left: calc(31.15vw - 25px); top: calc(67.84vw - 25px);"><div class="destBox" style="height: 39.5vw;">
                 <img src="https://i.imgur.com/MLPadhE.png">
                 <div><h3>Chalk Cliffs</h3>
                     <p>Calcium deposits from crustaceans leave chalky trails on these cliff surfaces. Voyagers can tour the lighthouse nearby. Quite windy here; bring a jacket.</p></div>
@@ -242,12 +325,12 @@
                     <h5 class="dbselect" id="s8">Select</h5>
                 </div>
             </div>
-            <h3 class="exit">&times;</h3>
+            <h3 class="exit" style="top: 35vw">&times;</h3>
         </div>
     </div>
 
     <!-- Both -->
-    <div id="smallother">
+    <div id="smallother" style="padding-top: 5vw;">
         <div id="difficulty">
             <h4>Select Difficulty</h4>
             <ul>
@@ -260,32 +343,25 @@
                 <li> Very Difficult </li>
             </ul>
         </div>
-        <div id="range">
+        <div id="range" style="padding-top: 2vw;">
             <h4>Select Range</h4>
-            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-            <div id="slider-range"></div>
+            <div style="background-color: black; text-align: center; margin-top: 1vw;">
+                <input type="text" id="amount" style="border: 0; color: black; font-weight: 300; font-size: 3vw;">
+                <div id="slider-range" style="width: 50vw; margin: 3vw auto;"></div>
+            </div>
         </div>
-        <div id="submit">
-            Submit
-        </div>
+        <div id="submit">Submit</div>
     </div>
-    <div id="bigtrail">
-        <h1>Your Generated Trail</h1>
-        <h2>Enjoy your hike!</h2>
+    <div id="smalldone">
+        <h1>Submitted!</h1>
+        <h2>Check the large display once your whole group is done!</h2>
+    </div>
+    <div id="bigtrail" style="background-color: black; background-size: cover; width: 100vw; height: 80.49vw; color: white; text-align: center;">
+        <h1 style="font-size: 5vw; font-weight: 600; width: 100%; text-align: center; top: 32.5vw; z-index: 10; position: absolute;">Your Generated Trail</h1>
+        <h2 style="font-size: 2vw; font-weight: 300; width: 100%; text-align: center; top: 40vw; z-index: 10; position: absolute;">Enjoy your hike!</h2>
     </div>
 </body>
 <script>
-
-    // setting up the canvas and one paper tool
-    // var canvas = document.getElementById('myCanvas');
-    // paper.setup(canvas);
-    // var tool = new paper.Tool();
-    // var path = new paper.Path();
-    var uid = Date.now() % 10000;
-    var red = Math.round(Math.random() * 255);
-    var green = Math.round(Math.random() * 255);
-    var blue = Math.round(Math.random() * 255);
-
     // getting the URL (you may want to use for Exercise 3)
     var url = window.location.href;
     var option = url.split("=")[1].split("&")[0];
@@ -295,7 +371,7 @@
         'ws://' + window.location.host + '/ws/draw');
 
     window.onload = (e) => {
-        console.log("hello");
+        document.getElementById("smalldone").style.display = "none";
         document.getElementById("bigtrail").style.display = "none";
         if (option == "1") {
             if (size == "big") {
@@ -310,6 +386,7 @@
                 document.getElementById("bignothing").style.display = "none";
                 document.getElementById("smallmap").style.display = "none";
                 document.getElementById("smallother").style.display = "block";
+                socket.onopen = () => socket.send("{\"device\" : " + 1 + ", \"point\" : " + 0 + "}");
             } else {
                 console.log("Follow instructions!");
             }
@@ -326,6 +403,7 @@
                 document.getElementById("bignothing").style.display = "none";
                 document.getElementById("smallmap").style.display = "block";
                 document.getElementById("smallother").style.display = "block";
+                socket.onopen = () => socket.send("{\"device\" : " + 1 + ", \"point\" : " + 0 + "}");
             } else {
                 console.log("Follow instructions!");
             }
@@ -333,59 +411,307 @@
             console.log("Follow instructions!");
         }
     };
-
+    window.unload = (e) => {
+        if (size == "small") {
+            socket.send("{\"device\" : " + -1 + ", \"point\" : " + 0 + "}");
+        }
+    };
     var readinginfo = 0;
-    $('.destButton').click(function(){
+    $('.destButton').click(function() {
         if (readinginfo == 0) {
-            $('.destButton').css({'cursor' : 'default', 'background-size' : 0, 'border' : 'none'});
+            $('.destButton').css({'cursor' : 'default', 'background-size' : 0, 'border-width' : '0'});
             $(this).find('.destBox').css({'display' : 'block'});
             $('.exit').css({'display' : 'block'});
             readinginfo = 1;
         }
     });
-    $('.exit').click(function(){
-        $('.destButton').css({'cursor' : 'pointer', 'background-size' : 'cover', 'border' : '2px white solid'});
+    $('.exit').click(function() {
+        $('.destButton').css({'cursor' : 'pointer', 'background-size' : 'cover', 'border-width' : '2px'});
         $('.destBox').css({'display' : 'none'});
         readinginfo = 0;
         $(this).css({'display' : 'none'});
     });
-    $
+    var selected1 = 0;
+    var selected2 = 0;
+    var selected3 = 0;
+    var selected4 = 0;
+    var selected5 = 0;
+    var selected6 = 0;
+    var selected7 = 0;
+    var selected8 = 0;
+    $('#o1').click(function() {
+        if (selected1 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            selected1 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            selected1 = 0;
+        }
+    });
+    $('#o2').click(function() {
+        if (selected2 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+            selected2 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+            selected2 = 0;
+        }
+    });
+    $('#o3').click(function() {
+        if (selected3 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+            selected3 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+            selected3 = 0;
+        }
+    });
+    $('#o4').click(function() {
+        if (selected4 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+            selected4 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+            selected4 = 0;
+        }
+    });
+    $('#o5').click(function() {
+        if (selected5 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+            selected5 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+            selected5 = 0;
+        }
+    });
+    $('#o6').click(function() {
+        if (selected6 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+            selected6 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+            selected6 = 0;
+        }
+    });
+    $('#o7').click(function() {
+        if (selected7 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+            selected7 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+            selected7 = 0;
+        }
+    });
+    $('#o8').click(function() {
+        if (selected8 == 0) {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 1', 'color' : 'black'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+            selected8 = 1;
+        } else {
+            $(this).css({'background-color' : 'rgba(255, 255, 255, 0.3', 'color' : 'white'});
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+            selected8 = 0;
+        }
+    });
+    $('#s1').click(function() {
+        if (selected1 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u1').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/BPYN4hh.png)', 'border-color' : 'white'});
+            selected1 = 1;
+        }
+    });
+    $('#u1').click(function() {
+        if (selected1 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s1').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/UDgvCXl.png)', 'border-color' : 'black'});
+            selected1 = 0;
+        }
+    });
+    $('#s2').click(function() {
+        if (selected2 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u2').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/dRBqzdY.png)', 'border-color' : 'white'});
+            selected2 = 1;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+        }
+    });
+    $('#u2').click(function() {
+        if (selected2 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s2').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/rN1DT5M.png)', 'border-color' : 'black'});
+            selected2 = 0;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+        }
+    });
+    $('#s3').click(function() {
+        if (selected3 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u3').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/v7mf5rF.png)', 'border-color' : 'white'});
+            selected3 = 1;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+        }
+    });
+    $('#u3').click(function() {
+        if (selected3 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s3').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/chcjBny.png)', 'border-color' : 'black'});
+            selected3 = 0;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+        }
+    });
+    $('#s4').click(function() {
+        if (selected4 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u4').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/SG7VXvA.png)', 'border-color' : 'white'});
+            selected4 = 1;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+        }
+    });
+    $('#u4').click(function() {
+        if (selected4 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s4').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/OyfrR8G.png)', 'border-color' : 'black'});
+            selected4 = 0;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+        }
+    });
+    $('#s5').click(function() {
+        if (selected5 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u5').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/AAB2VB8.png)', 'border-color' : 'white'});
+            selected5 = 1;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+        }
+    });
+    $('#u5').click(function() {
+        if (selected5 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s5').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/LZmnoSe.png)', 'border-color' : 'black'});
+            selected5 = 0;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+        }
+    });
+    $('#s6').click(function() {
+        if (selected6 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u6').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/S2dvGSw.png)', 'border-color' : 'white'});
+            selected6 = 1;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+        }
+    });
+    $('#u6').click(function() {
+        if (selected6 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s6').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/skhGSsy.png)', 'border-color' : 'black'});
+            selected6 = 0;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+        }
+    });
+    $('#s7').click(function() {
+        if (selected7 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u7').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/Ttv4ktp.png)', 'border-color' : 'white'});
+            selected7 = 1;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+        }
+    });
+    $('#u7').click(function() {
+        if (selected7 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s7').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/QZjHKRO.png)', 'border-color' : 'black'});
+            selected7 = 0;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+        }
+    });
+    $('#s8').click(function() {
+        if (selected8 == 0) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#u8').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/pWFJKQu.png)', 'border-color' : 'white'});
+            selected8 = 1;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + 1 + "}");
+        }
+    });
+    $('#u8').click(function() {
+        if (selected8 == 1) {
+            $(this).css({'background-color' : 'white', 'color' : 'black', 'cursor' : 'default'});
+            $('#s8').css({'background-color' : 'black', 'color' : 'white', 'cursor' : 'pointer'});
+            $(this).closest('.destButton').css({'background-image' : 'url(https://i.imgur.com/MLPadhE.png)', 'border-color' : 'black'});
+            selected8 = 0;
+            socket.send("{\"device\" : " + 0 + ", \"point\" : " + -1 + "}");
+        }
+    });
+    $('#submit').click(function() {
+        document.getElementById("smallchoose").style.display = "none";
+        document.getElementById("smallmap").style.display = "none";
+        document.getElementById("smallother").style.display = "none";
+        document.getElementById("smalldone").style.display = "block";
+        socket.send("{\"device\" : " + -1 + ", \"point\" : " + 0 + "}");
+    });
+    
+    //source: https://stackoverflow.com/questions/22043536/the-price-bar-with-max-and-min-prices
+    $(function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 20,
+            values: [ 5, 15 ],
+            slide: function( event, ui ) {
+                $( "#amount" ).val( ui.values[ 0 ] + "mi - " + ui.values[ 1 ] + "mi");
+            }
+        });
+        $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + "mi - " + $( "#slider-range" ).slider( "values", 1 ) + "mi");
+    });
 
-    // $( function() {
-    //     $( "#slider-range" ).slider({
-    //     range: true,
-    //     min: 0,
-    //     max: 500,
-    //     values: [ 75, 300 ],
-    //     slide: function( event, ui ) {
-    //         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-    //     }
-    //     });
-    //     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-    //     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-    // } );
-
-            // socket.send("{\"x\" : " + event.point.x 
-            // + ", \"y\" : " + event.point.y 
-            // + ", \"uid\" : " + uid 
-            // + ", \"red\" : " + red 
-            // + ", \"green\" : " + green 
-            // + ", \"blue\" : " + blue 
-            // + ", \"new\" : " + 1 + "}");
-
+    var deviceCount = 0;
+    var balance = 0;
     socket.onmessage = function(receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
         console.log("Received: " + JSON.stringify(received));
-        // You will probably want to add some code here to draw more lines.
-        if (uid != received.uid) {
-            if (size == 'large') {
-                if (received.new == 1) {
-                    path = new paper.Path();
-                } else {
-                    path.strokeColor = "rgb(" + received.red + ", " + received.green + ", " + received.blue + ")";;
-                    path.add(received.x, received.y);
+        if (size == 'big') {
+            if (received.device == 1) {
+                deviceCount += 1;
+            } else if (received.device == -1) {
+                deviceCount -= 1;
+                if (deviceCount == 0) {
+                    document.getElementById("bigmap").style.display = "none";
+                    document.getElementById("bignothing").style.display = "none";
+                    document.getElementById("bigtrail").style.display = "block";
+                    if (balance >= 0) {
+                        document.getElementById("bigtrail").style.backgroundImage = "url(https://i.imgur.com/4qk8qVC.png)";
+                    } else {
+                        document.getElementById("bigtrail").style.backgroundImage = "url(https://i.imgur.com/X96KSTf.png)";
+                    }
                 }
-            } 
+            } else {
+                balance += received.point;
+            }
         }
     }
 
